@@ -20,7 +20,7 @@ const CustomBarChart = ({ data }) => {
       return (
         <div className="bg-white shadow-md  rounded-lg p-2 border border-gray-300">
           <p className="text-xs font-semibold text-purple-800 mb-1">
-            {payload[0].payload.category}
+            {payload[0].payload.month}
           </p>
           <p className="text-sm text-gray-600">
             Amount :{" "}
@@ -40,7 +40,7 @@ const CustomBarChart = ({ data }) => {
         <BarChart data={data}>
           <CartesianGrid stroke="none" />
           <XAxis
-            dataKey="category"
+            dataKey="month"
             tick={{ fontSize: 12, fill: "#555" }}
             stroke="none"
           />
