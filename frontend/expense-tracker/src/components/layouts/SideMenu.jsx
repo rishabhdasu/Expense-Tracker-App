@@ -3,10 +3,17 @@ import { SIDE_MENU_DATA } from "../../utils/data";
 import { UserContext } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import CharAvatar from "../Cards/CharAvatar";
+import { useEffect } from "react";
 
 const SideMenu = ({ activeMenu }) => {
   const { user, clearUser } = useContext(UserContext);
   const [hoveredMenu, setHoveredMenu] = useState(null);
+  const [imageError, setImageError] = useState(false);
+
+  useEffect(() => {
+    setImageError(false);
+  }, [user]);
+
   const navigate = useNavigate();
   const handleClick = (route) => {
     if (route === "logout") {
@@ -22,13 +29,16 @@ const SideMenu = ({ activeMenu }) => {
     navigate("/login");
   };
   return (
-    <div className="w-64 h-[calc(100vh-61px)] bg-white border-rborder-gray-200/50 p-5 sticky top-[61px] z-20">
+    <div className="w-64 h-[calc(100vh-61px)] bg-white border-r border-gray-200/50 p-5 sticky top-[61px] z-20">
       <div className="flex items-center justify-center gap-3 mt-3 mb-7 overflow-hidden ">
-        {user?.profileImageUrl ? (
+        {user?.profileImageUrl && !imageError ? (
           <img
             src={user?.profileImageUrl || ""}
             alt="Profile Image"
             className="w-20 h-20 bg-slate-400 rounded-full object-cover transition-transform duration-500 hover:scale-110"
+            onError={() => {
+              setImageError(true);
+            }}
           />
         ) : (
           <CharAvatar
@@ -50,7 +60,9 @@ const SideMenu = ({ activeMenu }) => {
           <button
             key={`menu_${index}`}
             className={`w-full flex items-center gap-4 text-[15px] transition-all duration-700 ease-in-out ${
-              isHighlighted ? "text-white bg-primary" : ""
+              isHighlighted
+                ? "text-white bg-primary shadow-md"
+                : "text-gray-600 hover:bg-gray-50"
             } py-3 px-6 rounded-lg mb-3`}
             onClick={() => {
               handleClick(item.path);
