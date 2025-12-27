@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { LuUser, LuUpload, LuTrash } from "react-icons/lu";
 
 const ProfilePhotoSelector = ({ image, setImage }) => {
@@ -11,18 +11,29 @@ const ProfilePhotoSelector = ({ image, setImage }) => {
       // Update the image
       setImage(file);
     }
-    const preview = URL.createObjectURL(file);
-    setPreviewUrl(preview);
   };
 
   const handleRemoveImage = () => {
     setImage(null);
-    setPreviewUrl(null);
   };
 
   const onChooseFile = () => {
     inputRef.current.click();
   };
+  useEffect(() => {
+    if (typeof image === "string") {
+      setPreviewUrl(image);
+    } else if (image) {
+      setPreviewUrl(URL.createObjectURL(image));
+    } else {
+      setPreviewUrl(null);
+    }
+    return () => {
+      if (previewUrl && typeof image !== "string") {
+        URL.revokeObjectURL(previewUrl);
+      }
+    };
+  }, [image]);
 
   return (
     <div className="flex justify-center mb-6">
