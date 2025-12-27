@@ -80,3 +80,35 @@ exports.getUserInfo = async (req, res) => {
     });
   }
 };
+
+exports.updateUserProfile = async (req, res) => {
+  try {
+    const { fullName, profileImageUrl } = req.body;
+    const user = await User.findById(req.user.id).select("-password");
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    if (fullName) {
+      user.fullName = fullName;
+    }
+
+    if (profileImageUrl) {
+      user.profileImageUrl = profileImageUrl;
+    }
+
+    await user.save();
+
+    res.status(200).json({
+      message: "Profile updated successfully",
+      user: {
+        _id: user._id,
+        fullName: user.fullName,
+        email: user.email,
+        profileImageUrl: user.profileImageUrl,
+      },
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Server Error", error: error.message });
+  }
+};
