@@ -67,8 +67,9 @@ cd expense-tracker
 
 ### 2. Backend Setup
 
-Navigate to the backend folder and install dependencies:
+Navigate to the **backend** folder and install dependencies:
 
+bash
 cd backend
 npm install
 
@@ -82,8 +83,7 @@ CLOUDINARY_API_KEY=your_api_key
 CLOUDINARY_API_SECRET=your_api_secret
 
 Start the Server:
-code
-Bash
+
 npm start
 # Server should run on http://localhost:8000
 
@@ -105,14 +105,10 @@ code
 Bash
 npm run dev
 
-🌐 API Endpoints
-Method	Endpoint	Description
-POST	/api/v1/auth/register	Register a new user
-POST	/api/v1/auth/login	Login user & get Token
-PUT	/api/v1/auth/profile	Update Name & Profile Image
-GET	/api/v1/dashboard	Get summary stats & charts
-POST	/api/v1/income/add-income	Add new income source
-POST	/api/v1/expense/add-expense	Add new expense
+
+
+
+
 
 🧠 What I Learned
 Building this project helped me understand:
