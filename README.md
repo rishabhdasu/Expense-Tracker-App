@@ -18,11 +18,11 @@ A full-stack financial management application designed to help users track their
 
 | Dashboard | Income Management |
 |:---:|:---:|
-| ![Dashboard](https://github.com/user-attachments/assets/ff72700a-1604-485b-a620-dbeaec4e13c8) | ![Income](https://github.com/user-attachments/assets/e76b68e0-d360-4422-a9ff-443a498ca2f3) |
+| <img src="https://github.com/user-attachments/assets/ff72700a-1604-485b-a620-dbeaec4e13c8" width="100%" /> | <img src = "https://github.com/user-attachments/assets/e76b68e0-d360-4422-a9ff-443a498ca2f3" width="100%" /> |
 
 | Edit Profile | Expense Charts |
 |:---:|:---:|
-| ![Profile](https://github.com/user-attachments/assets/0e9868dc-148b-4fa0-86f5-3e917343d3b7) | ![Charts](https://github.com/user-attachments/assets/86a4cde6-c7cc-4fd1-af3c-b0fd0a63601c) |
+| <img src="https://github.com/user-attachments/assets/0e9868dc-148b-4fa0-86f5-3e917343d3b7" width="100%" /> | <img src= "https://github.com/user-attachments/assets/86a4cde6-c7cc-4fd1-af3c-b0fd0a63601c" width="100%" /> |
 
 *(Replace the links above with actual screenshots of your app for a better portfolio look!)*
 
@@ -71,19 +71,20 @@ Navigate to the **backend** folder and install dependencies:
 
 ```
 bash
+
 cd backend
 npm install
-
 ```
 
 Create a .env file in the backend folder and add your credentials:
 
-PORT=8000
+```PORT=8000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_random_secret_string
 CLOUDINARY_CLOUD_NAME=your_cloud_name
 CLOUDINARY_API_KEY=your_api_key
 CLOUDINARY_API_SECRET=your_api_secret
+```
 
 Start the Server:
 
