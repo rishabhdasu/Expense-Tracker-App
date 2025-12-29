@@ -69,9 +69,12 @@ cd expense-tracker
 
 Navigate to the **backend** folder and install dependencies:
 
+```
 bash
 cd backend
 npm install
+
+```
 
 Create a .env file in the backend folder and add your credentials:
 
