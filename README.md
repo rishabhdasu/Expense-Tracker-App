@@ -127,13 +127,15 @@ npm run dev
 | **POST** | `/api/v1/income/add-income` | Add new income source |
 | **POST** | `/api/v1/expense/add-expense` | Add new expense |
 
-🧠 What I Learned
+## 🧠 What I Learned
+
 Building this project helped me understand:
-Full Stack Integration: Connecting React frontend with an Express backend.
-Authentication: Implementing secure Route Protection (ProtectedRoute wrapper).
-State Management: Using useContext to manage global User state.
-Cloud Services: Handling file uploads using Multer and Cloudinary.
-Deployment: Solving CORS issues and deploying to Vercel and Render.
+
+- **Full Stack Integration:** Connecting a **React** frontend with an **Express** backend.
+- **Authentication:** Implementing secure Route Protection using a `ProtectedRoute` wrapper.
+- **State Management:** Using `useContext` to manage global User state across the application.
+- **Cloud Services:** Handling image file uploads using **Multer** and storing them on **Cloudinary**.
+- **Deployment:** Solving real-world CORS issues and deploying the full stack to **Vercel** (Frontend) and **Render** (Backend).
 
 ## 📬 Contact
 
