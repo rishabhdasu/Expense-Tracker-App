@@ -76,7 +76,8 @@ npm install
 
 Create a .env file in the backend folder and add your credentials:
 
-```PORT=8000
+```
+PORT=8000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_random_secret_string
 CLOUDINARY_CLOUD_NAME=your_cloud_name
@@ -87,30 +88,44 @@ CLOUDINARY_API_SECRET=your_api_secret
 Start the Server:
 
 npm start
-# Server should run on http://localhost:8000
+Server should run on http://localhost:8000
 
-3. Frontend Setup
+### 3. Frontend Setup
 Open a new terminal, navigate to the frontend folder, and install dependencies:
 code
+```
 Bash
 cd frontend
 npm install
+```
 
 Configure Base URL:
 Go to frontend/src/utils/axiosInstance.js and ensure it points to localhost:
 code
+
 JavaScript
+
+```
 const BASE_URL = 'http://localhost:8000/api/v1';
+```
 
 Start the React App:
+
 code
+```
 Bash
 npm run dev
+```
+## 🌐 API Endpoints
 
-
-
-
-
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| **POST** | `/api/v1/auth/register` | Register a new user |
+| **POST** | `/api/v1/auth/login` | Login user & get Token |
+| **PUT** | `/api/v1/auth/profile` | Update Name & Profile Image |
+| **GET** | `/api/v1/dashboard` | Get summary stats & charts |
+| **POST** | `/api/v1/income/add-income` | Add new income source |
+| **POST** | `/api/v1/expense/add-expense` | Add new expense |
 
 🧠 What I Learned
 Building this project helped me understand:
