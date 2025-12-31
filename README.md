@@ -18,7 +18,13 @@ A full-stack financial management application designed to help users track their
 
 | Dashboard | Income Management |
 |:---:|:---:|
-| <img src="https://github.com/user-attachments/assets/ff72700a-1604-485b-a620-dbeaec4e13c8" width="100%" /> | <img src = "https://github.com/user-attachments/assets/e76b68e0-d360-4422-a9ff-443a498ca2f3" width="100%" /> |
+| <img width="947" height="417" alt="Image" src="https://github.com/user-attachments/assets/a9f27a45-d33d-4e61-847f-71cbc8e0b5e7" /> | <img width="947" height="417" alt="Image" src="https://github.com/user-attachments/assets/3c66c1eb-abb5-4cf0-bec3-14a56b5c568c" /> |
+
+| Dashboard | Expense Management |
+|:---:|:---:|
+| <img width="948" height="417" alt="Image" src="https://github.com/user-attachments/assets/5bafd79c-3636-40c3-ac40-6841adfde78b" />
+ | <img width="948" height="417" alt="Image" src="https://github.com/user-attachments/assets/8de9deb1-e7c8-44f5-86cc-7a22d67f6b98" /> |
+
 ---
 
 ## ✨ Key Features
