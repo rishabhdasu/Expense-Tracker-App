@@ -22,8 +22,7 @@ A full-stack financial management application designed to help users track their
 
 | Dashboard | Expense Management |
 |:---:|:---:|
-| <img width="948" height="417" alt="Image" src="https://github.com/user-attachments/assets/5bafd79c-3636-40c3-ac40-6841adfde78b" />
- | <img width="948" height="417" alt="Image" src="https://github.com/user-attachments/assets/8de9deb1-e7c8-44f5-86cc-7a22d67f6b98" /> |
+| <img width="947" height="417" alt="Image" src="https://github.com/user-attachments/assets/5bafd79c-3636-40c3-ac40-6841adfde78b" /> | <img width="947" height="417" alt="Image" src="https://github.com/user-attachments/assets/8de9deb1-e7c8-44f5-86cc-7a22d67f6b98" /> |
 
 ---
 
