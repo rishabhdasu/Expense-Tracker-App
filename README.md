@@ -8,7 +8,7 @@ A full-stack financial management application designed to help users track their
 ---
 
 ### 🚀 Live Demo
-**[Click here to view the Live App](YOUR_VERCEL_LINK_HERE)**
+**[Click here to view the Live App](https://expense-tracker-app-beta-henna.vercel.app/login)**
 
 *(Note: The backend is hosted on a free Render instance. Please allow up to 60 seconds for the server to wake up on the initial login.)*
 
