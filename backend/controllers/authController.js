@@ -28,9 +28,14 @@ exports.registerUser = async (req, res) => {
       password,
       profileImageUrl,
     });
-    res.status(201).json({
+    return res.status(201).json({
       id: user._id,
-      user,
+      user: {
+        _id: user._id,
+        fullName: user.fullName,
+        email: user.email,
+        profileImageUrl: user.profileImageUrl,
+      },
       token: generateToken(user._id),
     });
   } catch (err) {
@@ -50,11 +55,16 @@ exports.loginUser = async (req, res) => {
   try {
     const user = await User.findOne({ email });
     if (!user || !(await user.comparePassword(password))) {
-      res.status(400).json({ message: "Invalid Credentials" });
+      return res.status(400).json({ message: "Invalid Credentials" });
     }
-    res.status(200).json({
+    return res.status(200).json({
       id: user._id,
-      user,
+      user: {
+        _id: user._id,
+        fullName: user.fullName,
+        email: user.email,
+        profileImageUrl: user.profileImageUrl,
+      },
       token: generateToken(user._id),
     });
   } catch (err) {
@@ -82,8 +92,8 @@ exports.getUserInfo = async (req, res) => {
 };
 
 exports.updateUserProfile = async (req, res) => {
+  const { fullName, profileImageUrl } = req.body;
   try {
-    const { fullName, profileImageUrl } = req.body;
     const user = await User.findById(req.user.id).select("-password");
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -99,7 +109,7 @@ exports.updateUserProfile = async (req, res) => {
 
     await user.save();
 
-    res.status(200).json({
+    return res.status(200).json({
       message: "Profile updated successfully",
       user: {
         _id: user._id,
