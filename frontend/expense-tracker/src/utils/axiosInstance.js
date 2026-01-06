@@ -31,16 +31,11 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   (error) => {
-    // Handle common errors Globally
-    if (error.response) {
-      if (error.response.status === 401) {
-        // Redirect to login page
+    if (error.response && error.response.status === 401) {
+      if (window.location.pathname !== "/login") {
+        localStorage.clear();
         window.location.href = "/login";
-      } else if (error.response.status === 500) {
-        console.error("Server error, please try again later");
       }
-    } else if (error.code === "ECONNABORTED") {
-      console.error("Request timeout, please try again later");
     }
     return Promise.reject(error);
   }
