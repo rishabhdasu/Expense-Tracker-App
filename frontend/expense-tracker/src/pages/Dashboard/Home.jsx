@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import DashboardLayout from "../../components/layouts/DashboardLayout";
-import { useUserAuth } from "../../hooks/useUserAuth";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPath";
 import { LuHandCoins, LuWalletMinimal } from "react-icons/lu";
@@ -16,8 +15,6 @@ import RecentIncomeWithChart from "../../components/Dashboard/RecentIncomeWithCh
 import RecentIncome from "../../components/Dashboard/RecentIncome";
 
 const Home = () => {
-  useUserAuth();
-
   const navigate = useNavigate();
 
   const [dashboardData, setDashboardData] = useState(null);

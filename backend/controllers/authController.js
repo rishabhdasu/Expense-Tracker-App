@@ -92,19 +92,26 @@ exports.getUserInfo = async (req, res) => {
 };
 
 exports.updateUserProfile = async (req, res) => {
-  const { fullName, profileImageUrl } = req.body;
+  const { fullName, profileImageUrl, password } = req.body;
   try {
-    const user = await User.findById(req.user.id).select("-password");
+    const user = await User.findById(req.user.id);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-
     if (fullName) {
       user.fullName = fullName;
     }
-
     if (profileImageUrl) {
       user.profileImageUrl = profileImageUrl;
+    }
+    if (password) {
+      const passwordError = validatePassword(password);
+      if (passwordError) {
+        return res.status(400).json({
+          message: passwordError,
+        });
+      }
+      user.password = password;
     }
 
     await user.save();
@@ -113,7 +120,6 @@ exports.updateUserProfile = async (req, res) => {
       message: "Profile updated successfully",
       user: {
         _id: user._id,
-        fullName: user.fullName,
         email: user.email,
         profileImageUrl: user.profileImageUrl,
       },

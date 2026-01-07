@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import DashboardLayout from "../../components/layouts/DashboardLayout";
-import { useUserAuth } from "../../hooks/useUserAuth";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPath";
 import ExpenseOverview from "../../components/Expense/ExpenseOverview";
@@ -11,7 +10,6 @@ import DeleteAlert from "../../components/DeleteAlert";
 import AddExpenseForm from "../../components/Expense/AddExpenseForm";
 
 const Expense = () => {
-  useUserAuth();
   const [expenseData, setExpenseData] = useState([]);
   const [openAddExpenseModal, setOpenAddExpenseModal] = useState(false);
   const [loading, setLoading] = useState(false);

@@ -6,21 +6,30 @@ import { UserContext } from "../context/UserContext";
 import uploadImage from "../utils/uploadImage";
 import axiosInstance from "../utils/axiosInstance";
 import { API_PATHS } from "../utils/apiPath";
+import { validatePassword } from "../utils/helper";
 
 const UpdateUserForm = ({ onClose }) => {
   const { user, updateUser } = useContext(UserContext);
   const [profilePic, setProfilePic] = useState(user?.profileImageUrl || null);
   const [fullName, setFullName] = useState(user?.fullName || "");
+  const [password, setPassword] = useState(user?.password || "");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleUpdate = async (e) => {
     e.preventDefault();
 
     if (!fullName.trim()) {
-      toast.error("Name cannot be empty");
+      setError("Name cannot be empty");
       return;
     }
-
+    if (password) {
+      const passwordError = validatePassword(password);
+      if (passwordError) {
+        setError(passwordError);
+        return; //
+      }
+    }
     setLoading(true);
     try {
       let profileImageUrl = user?.profileImageUrl;
@@ -31,6 +40,7 @@ const UpdateUserForm = ({ onClose }) => {
       const response = await axiosInstance.put(API_PATHS.AUTH.UPDATE_USER, {
         fullName,
         profileImageUrl,
+        password,
       });
       if (response.data && response.data.user) {
         updateUser(response.data.user);
@@ -57,6 +67,13 @@ const UpdateUserForm = ({ onClose }) => {
             placeholder="First Name Last Name"
             type="text"
           />
+          <Input
+            value={password}
+            onChange={({ target }) => setPassword(target.value)}
+            label="Password"
+            placeholder="Min 8 characters"
+            type="password"
+          />
         </div>
         <button
           className="btn-primary mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
@@ -65,6 +82,7 @@ const UpdateUserForm = ({ onClose }) => {
         >
           {loading ? "Updating..." : "Save Changes"}
         </button>
+        {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
       </form>
     </div>
   );

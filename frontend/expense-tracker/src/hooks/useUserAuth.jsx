@@ -1,12 +1,10 @@
 import { useContext, useEffect } from "react";
 import { UserContext } from "../context/UserContext";
-import { useNavigate } from "react-router-dom";
 import axiosInstance from "../utils/axiosInstance";
 import { API_PATHS } from "../utils/apiPath";
 
 export const useUserAuth = () => {
   const { user, updateUser, clearUser, setLoading } = useContext(UserContext);
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
@@ -24,7 +22,6 @@ export const useUserAuth = () => {
         console.error("Failed to fetch user info", error);
         if (isMounted) {
           clearUser();
-          navigate("/login");
         }
       } finally {
         if (isMounted) {
@@ -36,5 +33,5 @@ export const useUserAuth = () => {
     return () => {
       isMounted = false;
     };
-  }, [updateUser, clearUser, navigate, setLoading]);
+  }, []);
 };

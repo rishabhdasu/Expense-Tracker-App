@@ -5,6 +5,30 @@ export const validateEmail = (email) => {
   return regex.test(email);
 };
 
+export const validatePassword = (password) => {
+  if (!password || password.length < 8) {
+    return "Password must be at least 8 characters long.";
+  }
+
+  // 2. Check Uppercase
+  if (!/[A-Z]/.test(password)) {
+    return "Password must contain at least one uppercase letter.";
+  }
+
+  // 3. Check Number
+  if (!/\d/.test(password)) {
+    return "Password must contain at least one number.";
+  }
+
+  // 4. Check Special Character
+  // eslint-disable-next-line no-useless-escape
+  if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
+    return "Password must contain at least one special character.";
+  }
+
+  return null; // No error means the password is valid!
+};
+
 export const getInitials = (name) => {
   if (!name) return "";
 
