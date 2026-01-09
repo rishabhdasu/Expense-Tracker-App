@@ -8,6 +8,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPath";
 import { UserContext } from "../../context/UserContext";
 import uploadImage from "../../utils/uploadImage";
+import Spinner from "../../components/Spinner";
 
 const SignUp = () => {
   const [profilePic, setProfilePic] = useState(null);
@@ -15,6 +16,7 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const { updateUser } = useContext(UserContext);
   const navigate = useNavigate();
@@ -42,6 +44,7 @@ const SignUp = () => {
       return; //
     }
     setError("");
+    setIsLoading(true);
 
     // Signup API call
     try {
@@ -69,12 +72,13 @@ const SignUp = () => {
       } else {
         setError("Something went wrong. Please try again.");
       }
+      setIsLoading(false);
     }
   };
 
   return (
     <AuthLayout>
-      <div className="lg:w-[100] h-auto md:mt-0 flex flex-col justify-center">
+      <div className="lg:w-[100] h-auto md:mt-0 flex flex-col justify-center mt-8">
         <h3 className="text-xl font-semibold text-black">Create an account</h3>
         <p className="text-xs text-slate-700 mt-[5px] mb-6">
           Join us today by entering your details below
@@ -104,11 +108,19 @@ const SignUp = () => {
               placeholder="Min 8 characters"
               type="password"
             />
-            <button className="btn-primary" type="submit">
-              Sign Up
+            <button className="btn-primary" type="submit" disabled={isLoading}>
+              {isLoading ? (
+                <>
+                  <Spinner size={`h-4 w-4`} color={`border-white`} />
+                </>
+              ) : (
+                "SignUp"
+              )}
             </button>
-            {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
-            <p className="text-[13px] text-slate-800 mt-3">
+            <div className="mt-1 h-5">
+              {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
+            </div>
+            <p className="text-[13px] text-slate-800 mt-2 mb-8">
               Already have an account?{" "}
               <Link className="font-medium text-primary underline" to="/Login">
                 Login

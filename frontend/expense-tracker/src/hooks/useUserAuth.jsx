@@ -8,6 +8,12 @@ export const useUserAuth = () => {
 
   useEffect(() => {
     if (user) {
+      setLoading(true);
+      return;
+    }
+    const token = localStorage.getItem("token");
+    if (!token) {
+      clearUser();
       setLoading(false);
       return;
     }
