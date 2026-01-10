@@ -6,11 +6,13 @@ import { validateEmail } from "../../utils/helper";
 import { axiosInstance } from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPath";
 import { UserContext } from "../../context/UserContext";
+import Spinner from "../../components/Spinner";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { updateUser } = useContext(UserContext);
 
@@ -29,6 +31,7 @@ const Login = () => {
       return;
     }
     setError("");
+    setIsLoading(true);
 
     // Login API Call
     try {
@@ -49,6 +52,7 @@ const Login = () => {
       } else {
         setError("Something went wrong.Please try again");
       }
+      setIsLoading(false);
     }
   };
 
@@ -77,8 +81,14 @@ const Login = () => {
           <div className="h-5 mt-1">
             {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
           </div>
-          <button type="submit" className="btn-primary">
-            LOGIN
+          <button type="submit" className="btn-primary" disabled={isLoading}>
+            {isLoading ? (
+              <>
+                <Spinner size={`h-4 w-4`} color={`border-white`} />{" "}
+              </>
+            ) : (
+              "Login"
+            )}
           </button>
           <p className="text-[13px] text-slate-800 mt-3">
             Dont' have an account?{" "}
