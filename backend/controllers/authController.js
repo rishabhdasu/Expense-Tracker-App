@@ -7,6 +7,15 @@ const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 };
 
+// Upload Image Controller
+exports.uploadImageController = async (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ message: "No file uploaded" });
+  }
+  const imageUrl = req.file.path;
+  res.status(200).json({ imageUrl });
+};
+
 // Register User
 exports.registerUser = async (req, res) => {
   const { fullName, email, password, profileImageUrl } = req.body;
@@ -14,33 +23,6 @@ exports.registerUser = async (req, res) => {
   // Validation: check for missing fields
   if (!fullName || !email || !password) {
     return res.status(400).json({ message: "All fields are required" });
-  }
-  if (!password || password.length < 8) {
-    return res
-      .status(400)
-      .json({ message: "Password must be at least 8 characters long." });
-  }
-
-  // 2. Check Uppercase
-  if (!/[A-Z]/.test(password)) {
-    return res.status(400).json({
-      message: "Password must contain at least one uppercase letter.",
-    });
-  }
-
-  // 3. Check Number
-  if (!/\d/.test(password)) {
-    return res.status(400).json({
-      message: "Password must contain at least one number.",
-    });
-  }
-
-  // 4. Check Special Character
-  // eslint-disable-next-line no-useless-escape
-  if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
-    return res.status(400).json({
-      message: "Password must contain at least one special character.",
-    });
   }
   try {
     // Check if user already exists
@@ -132,12 +114,6 @@ exports.updateUserProfile = async (req, res) => {
       user.profileImageUrl = profileImageUrl;
     }
     if (password) {
-      const passwordError = validatePassword(password);
-      if (passwordError) {
-        return res.status(400).json({
-          message: passwordError,
-        });
-      }
       user.password = password;
     }
 

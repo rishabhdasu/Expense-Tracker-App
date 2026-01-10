@@ -26,6 +26,11 @@ const SignUp = () => {
 
     let profileImageUrl = "";
 
+    if (!profilePic) {
+      setError("No file uploaded");
+      return;
+    }
+
     if (!fullName) {
       setError("Please enter the name");
       return;

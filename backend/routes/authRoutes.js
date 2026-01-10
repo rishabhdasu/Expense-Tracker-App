@@ -1,32 +1,22 @@
 const express = require("express");
-const { protect } = require("../middleware/authMiddlewares");
+const { protect, validatePassword } = require("../middleware/authMiddlewares");
 
 const {
   registerUser,
   loginUser,
   getUserInfo,
   updateUserProfile,
+  uploadImageController,
 } = require("../controllers/authController");
 
 const upload = require("../middleware/uploadMiddleware");
 
 const router = express.Router();
 
-router.post("/register", registerUser);
+router.post("/register", validatePassword, registerUser);
 router.post("/login", loginUser);
 router.get("/getUser", protect, getUserInfo);
-router.put("/updateUser", protect, updateUserProfile);
-
-router.post("/upload-image", upload.single("image"), (req, res) => {
-  if (!req.file) {
-    return res.status(400).json({ message: "No files uploaded" });
-  }
-  // const imageUrl = `${req.protocol}://${req.get("host")}/uploads/${
-  //   req.file.filename
-  // }`;
-
-  const imageUrl = req.file.path;
-  res.status(200).json({ imageUrl });
-});
+router.put("/updateUser", protect, validatePassword, updateUserProfile);
+router.post("/upload-image", upload.single("image"), uploadImageController);
 
 module.exports = router;
