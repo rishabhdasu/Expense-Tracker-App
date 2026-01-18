@@ -65,7 +65,7 @@ exports.downloadExpenseExcel = async (req, res) => {
     );
     res.setHeader(
       "Content-Disposition",
-      "attachment; filename=incidents_report.xlsx",
+      "attachment; filename=expense_report.xlsx",
     );
     return res.send(buffer);
   } catch (err) {
