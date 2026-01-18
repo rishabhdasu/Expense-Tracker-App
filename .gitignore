@@ -1,20 +1,33 @@
-# --- Dependencies ---
+# --- Dependencies (Recursive) ---
 node_modules
 **/node_modules
 
-# --- Security (Environment Variables) ---
+# --- Security & Secrets (Comprehensive) ---
 .env
 **/.env
+.env*.local 
+**/.env*.local
 
-# --- Build Outputs ---
+# --- Build & Output ---
 dist
+dist-ssr
 build
+out
+.next
 
-# --- Logs & OS Files ---
+# --- Logs & OS Junk ---
 logs
 *.log
+npm-debug.log*
 .DS_Store
+Thumbs.db
 
-# --- Uploads (Don't push local test images) ---
+# --- System/Editor ---
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+
+# --- Uploads (Keep folder structure, ignore content) ---
 backend/uploads/*
 !backend/uploads/.gitkeep
